@@ -100,12 +100,11 @@ def training_loop(
     G_reg_interval          = 4,        # How often the perform regularization for G? Ignored if lazy_regularization=False.
     D_reg_interval          = 16,       # How often the perform regularization for D? Ignored if lazy_regularization=False.
     total_kimg              = 25000,    # Total length of the training, measured in thousands of real images.
-    kimg_per_tick           = 10,        # Progress snapshot interval.
-    image_snapshot_ticks    = 1,       # How often to save image snapshots? None = only save 'reals.png' and 'fakes-init.png'.
-    network_snapshot_ticks  = 1,       # How often to save network snapshots? None = only save 'networks-final.pkl'.
+    kimg_per_tick           = 10,       # Progress snapshot interval.
+    image_snapshot_ticks    = 50,       # How often to save image snapshots? None = only save 'reals.png' and 'fakes-init.png'.
+    network_snapshot_ticks  = 50,       # How often to save network snapshots? None = only save 'networks-final.pkl'.
     resume_pkl              = None,     # Network pickle to resume training from, None = train from scratch.
-    resume_kimg             = 0,      # Assumed training progress at the beginning. Affects reporting and training schedule.
-    resume_time             = 0.0,      # Assumed wallclock time at the beginning. Affects reporting.
+    resume_kimg             = 0,        # Assumed training progress at the beginning. Affects reporting and training schedule.
     abort_fn                = None,     # Callback function for determining whether to abort training.
     progress_fn             = None,     # Callback function for updating training progress.
 ):
