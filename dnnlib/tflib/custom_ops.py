@@ -62,8 +62,6 @@ def _get_cuda_gpu_arch_string():
     return 'sm_%s%s' % (major, minor)
 
 def _run_cmd(cmd):
-    # https://stackoverflow.com/a/59368180
-    cmd = 'nvcc --std=c++11 -DNDEBUG ' + opts.strip()
     with os.popen(cmd) as pipe:
         output = pipe.read()
         status = pipe.close()
@@ -71,7 +69,7 @@ def _run_cmd(cmd):
         raise RuntimeError('NVCC returned an error. See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
 
 def _prepare_nvcc_cli(opts):
-    cmd = 'nvcc ' + opts.strip()
+    cmd = 'nvcc --std=c++11 -DNDEBUG ' + opts.strip()
     cmd += ' --disable-warnings'
     cmd += ' --include-path "%s"' % tf.sysconfig.get_include()
     cmd += ' --include-path "%s"' % os.path.join(tf.sysconfig.get_include(), 'external', 'protobuf_archive', 'src')
