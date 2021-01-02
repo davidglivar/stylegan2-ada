@@ -62,6 +62,8 @@ def _get_cuda_gpu_arch_string():
     return 'sm_%s%s' % (major, minor)
 
 def _run_cmd(cmd):
+    # https://stackoverflow.com/a/59368180
+    cmd = 'nvcc --std=c++11 -DNDEBUG ' + opts.strip()
     with os.popen(cmd) as pipe:
         output = pipe.read()
         status = pipe.close()
